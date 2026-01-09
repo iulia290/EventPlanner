@@ -1,0 +1,31 @@
+﻿@page
+@model EventPlanner.Pages.Registrations.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Registration</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Event
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Registration.EventItem.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Registration.Participant)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Registration.Participant.FullName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Registration.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

@@ -1,0 +1,42 @@
+﻿@page
+@model EventPlanner.Pages.Registrations.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Registrations</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Event
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registration[0].Participant)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Registration) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventItem.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participant.FullName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

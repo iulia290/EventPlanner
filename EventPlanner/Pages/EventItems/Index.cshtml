@@ -1,0 +1,77 @@
+﻿@page "/"
+@model EventPlanner.Pages.EventItems.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Events</h1>
+
+<p>
+    @if (User.IsInRole("Admin"))
+   {
+        <a asp-page="Create" class="btn btn-primary">Add New Event</a>
+   }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventItem[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventItem[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventItem[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventItem[0].Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventItem[0].MaxParticipants)
+            </th>
+            <th>Organizer</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.EventItem) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxParticipants)
+            </td>
+            <td>
+                @item.Organizer?.Name
+            </td>
+            <td>
+                 @if (User.IsInRole("Admin"))
+                 {
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                    <span> | </span>
+                 }
+
+                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+
+                 @if (User.IsInRole("Admin"))
+                 {
+                     <span> | </span>
+                     <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                 }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
