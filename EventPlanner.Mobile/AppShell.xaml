@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="EventPlanner.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:EventPlanner.Mobile.Pages"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+
+        <ShellContent
+            x:Name="EventsTab"
+            Route="Events"
+            Title="Events"
+            ContentTemplate="{DataTemplate pages:EventItemsEntryPage}" />
+
+        <ShellContent
+            x:Name="OrganizersTab"
+            Route="Organizers"
+            Title="Organizers"
+            ContentTemplate="{DataTemplate pages:OrganizersEntryPage}" />
+
+        <ShellContent
+            x:Name="ParticipantsTab"
+            Route="Participants"
+            Title="Participants"
+            ContentTemplate="{DataTemplate pages:ParticipantsEntryPage}" />
+
+        <ShellContent
+            x:Name="RegisterTab"
+            Route="Register"
+            Title="Register"
+            ContentTemplate="{DataTemplate pages:RegistrationsEntryPage}" />
+
+    </TabBar>
+
+</Shell>

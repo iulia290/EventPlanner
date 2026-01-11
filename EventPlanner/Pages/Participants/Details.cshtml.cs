@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EventPlanner.Pages.Participants
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class DetailsModel : PageModel
     {
         private readonly EventPlanner.Data.ApplicationDbContext _context;

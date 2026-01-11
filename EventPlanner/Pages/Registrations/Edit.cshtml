@@ -15,14 +15,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Registration.ID" />
             <div class="form-group">
-                <label asp-for="Registration.EventItemID" class="control-label">Event</label>
-                <select asp-for="Registration.EventItemID" class="form-control" asp-items="ViewBag.EventItemID" ></select>
-                <span asp-validation-for="Registration.EventItemID" class="text-danger"></span>
+                <label asp-for="Registration.EventItemId" class="control-label">Event</label>
+                <select asp-for="Registration.EventItemId" class="form-control" asp-items="ViewBag.EventItemID" ></select>
+                <span asp-validation-for="Registration.EventItemId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Registration.ParticipantID" class="control-label">Participant</label>
-                <select asp-for="Registration.ParticipantID" class="form-control" asp-items="ViewBag.ParticipantID" ></select>
-                <span asp-validation-for="Registration.ParticipantID" class="text-danger"></span>
+                <label asp-for="Registration.ParticipantId" class="control-label">Participant</label>
+                <select asp-for="Registration.ParticipantId" class="form-control" asp-items="ViewBag.ParticipantID" ></select>
+                <span asp-validation-for="Registration.ParticipantId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

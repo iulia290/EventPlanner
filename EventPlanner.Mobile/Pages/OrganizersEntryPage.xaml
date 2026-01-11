@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPlanner.Mobile.Pages.OrganizersEntryPage"
+             Title="Organizers">
+
+    <VerticalStackLayout Padding="16" Spacing="10">
+
+        <Label Text="Add Organizer" FontAttributes="Bold"/>
+
+        <Entry x:Name="NameEntry" Placeholder="Name (required)" />
+        <Entry x:Name="EmailEntry" Placeholder="Email (required)" Keyboard="Email"/>
+
+        <Button Text="Save organizer" Clicked="OnSaveClicked"/>
+
+        <BoxView HeightRequest="1" Opacity="0.3"/>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="List" FontAttributes="Bold" VerticalOptions="Center"/>
+            <Button Text="Refresh" Clicked="OnRefreshClicked" />
+        </HorizontalStackLayout>
+
+        <CollectionView x:Name="OrganizersView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="0,6">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="16"/>
+                            <Label Text="{Binding Email}" FontSize="13"/>
+                            <Label Text="{Binding ID, StringFormat='ID: {0}'}" FontSize="12" Opacity="0.7"/>
+                            <Button Text="Delete" CommandParameter="{Binding ID}" Clicked="OnDeleteClicked"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

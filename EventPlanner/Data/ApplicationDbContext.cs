@@ -19,7 +19,7 @@ namespace EventPlanner.Data
             base.OnModelCreating(builder);
 
             builder.Entity<Registration>()
-                .HasIndex(r => new { r.EventItemID, r.ParticipantID })
+                .HasIndex(r => new { r.EventItemId, r.ParticipantId })
                 .IsUnique();
         }
     }

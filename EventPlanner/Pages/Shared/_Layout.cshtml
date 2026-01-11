@@ -29,19 +29,21 @@
                                     Organizers
                                 </a>
                             </li>
+                       
+                        }
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Participants/Index">
                                     Participants
                                 </a>
                             </li>
-                        }
-                        @if (User.Identity?.IsAuthenticated ?? false)
-                        {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Registrations/Create">
                                     Register to event
                                 </a>
                             </li>
+
                         }
 
                     </ul>

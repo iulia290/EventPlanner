@@ -42,7 +42,7 @@ namespace EventPlanner.Pages.Registrations
             _context.Registrations.Add(Registration);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./EventItems");
         }
     }
 }

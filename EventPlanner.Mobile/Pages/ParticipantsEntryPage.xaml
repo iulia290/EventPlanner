@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="EventPlanner.Mobile.Pages.ParticipantsEntryPage"
+    Title="Participants">
+
+    <VerticalStackLayout Padding="16" Spacing="12">
+
+        <Label Text="Add Participant" FontAttributes="Bold" />
+
+        <Entry
+            x:Name="FirstNameEntry"
+            Placeholder="First name (required)" />
+
+        <Entry
+            x:Name="LastNameEntry"
+            Placeholder="Last name (required)" />
+
+        <Entry
+            x:Name="EmailEntry"
+            Placeholder="Email (required)"
+            Keyboard="Email" />
+
+        <Button
+            Text="Save participant"
+            Clicked="OnSaveClicked" />
+
+        <BoxView HeightRequest="1" Opacity="0.3" Margin="0,10"/>
+
+        <HorizontalStackLayout Spacing="10">
+            <Label
+                Text="List"
+                FontAttributes="Bold"
+                VerticalOptions="Center" />
+            <Button
+                Text="Refresh"
+                Clicked="OnRefreshClicked" />
+        </HorizontalStackLayout>
+
+        <CollectionView x:Name="ParticipantsView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="0,6">
+                        <VerticalStackLayout Spacing="4">
+
+                            <Label
+                                Text="{Binding FirstName}"
+                                FontSize="16"
+                                FontAttributes="Bold"/>
+
+                            <Label
+                                Text="{Binding LastName}"
+                                FontSize="14"/>
+
+                            <Label
+                                Text="{Binding Email}"
+                                FontSize="13"
+                                Opacity="0.8"/>
+
+                            <Label
+                                Text="{Binding ID, StringFormat='ID: {0}'}"
+                                FontSize="12"
+                                Opacity="0.6"/>
+
+                            <Button
+                                Text="Delete"
+                                CommandParameter="{Binding ID}"
+                                Clicked="OnDeleteClicked"/>
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

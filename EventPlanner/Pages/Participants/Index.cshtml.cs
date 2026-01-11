@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace EventPlanner.Pages.Participants
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly EventPlanner.Data.ApplicationDbContext _context;
