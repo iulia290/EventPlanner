@@ -3,7 +3,7 @@ using EventPlanner.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-
+using EventPlanner.Models;
 
 namespace EventPlanner.Controllers;
 

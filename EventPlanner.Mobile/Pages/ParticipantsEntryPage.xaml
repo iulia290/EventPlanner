@@ -26,6 +26,12 @@
             Text="Save participant"
             Clicked="OnSaveClicked" />
 
+        <HorizontalStackLayout Spacing="10">
+            <Button Text="Update participant" Clicked="OnUpdateClicked" />
+            <Button Text="Clear" Clicked="OnClearClicked" />
+        </HorizontalStackLayout>
+
+
         <BoxView HeightRequest="1" Opacity="0.3" Margin="0,10"/>
 
         <HorizontalStackLayout Spacing="10">
@@ -38,7 +44,9 @@
                 Clicked="OnRefreshClicked" />
         </HorizontalStackLayout>
 
-        <CollectionView x:Name="ParticipantsView">
+        <CollectionView x:Name="ParticipantsView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" Margin="0,6">

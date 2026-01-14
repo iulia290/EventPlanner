@@ -25,5 +25,9 @@ namespace EventPlanner.Models
         public Organizer? Organizer { get; set; }
 
         public ICollection<Registration>? Registrations { get; set; }
+
+        public int? CategoryID { get; set; }
+        public Category? Category { get; set; }
+
     }
 }

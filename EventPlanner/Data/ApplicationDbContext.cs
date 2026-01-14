@@ -13,6 +13,7 @@ namespace EventPlanner.Data
         public DbSet<Organizer> Organizers => Set<Organizer>();
         public DbSet<Participant> Participants => Set<Participant>();
         public DbSet<Registration> Registrations => Set<Registration>();
+        public DbSet<Category> Categories => Set<Category>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,5 +23,8 @@ namespace EventPlanner.Data
                 .HasIndex(r => new { r.EventItemId, r.ParticipantId })
                 .IsUnique();
         }
+
+        
+
     }
 }

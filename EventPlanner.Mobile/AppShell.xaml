@@ -6,6 +6,12 @@
     xmlns:pages="clr-namespace:EventPlanner.Mobile.Pages"
     Shell.FlyoutBehavior="Disabled">
 
+    
+
+    <Shell.ToolbarItems>
+        <ToolbarItem Text="Logout" Clicked="OnLogoutClicked" />
+    </Shell.ToolbarItems>
+
     <TabBar>
 
         <ShellContent
@@ -31,6 +37,7 @@
             Route="Register"
             Title="Register"
             ContentTemplate="{DataTemplate pages:RegistrationsEntryPage}" />
+
 
     </TabBar>
 

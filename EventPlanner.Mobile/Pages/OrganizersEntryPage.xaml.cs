@@ -6,6 +6,7 @@ namespace EventPlanner.Mobile.Pages;
 public partial class OrganizersEntryPage : ContentPage
 {
     private readonly ApiService _api = new();
+    private Organizer? _selected;
 
     public OrganizersEntryPage()
     {
@@ -85,5 +86,56 @@ public partial class OrganizersEntryPage : ContentPage
             await LoadOrganizers();
         }
     }
+
+    private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        _selected = e.CurrentSelection.FirstOrDefault() as Organizer;
+
+        if (_selected == null) return;
+
+        NameEntry.Text = _selected.Name;
+        EmailEntry.Text = _selected.Email;
+    }
+
+    private async void OnUpdateClicked(object sender, EventArgs e)
+    {
+        if (_selected == null)
+        {
+            await DisplayAlert("Pick", "Select an organizer first.", "OK");
+            return;
+        }
+
+        var name = NameEntry.Text?.Trim() ?? "";
+        var email = EmailEntry.Text?.Trim() ?? "";
+
+        if (name == "")
+        {
+            await DisplayAlert("Validation", "Name is required.", "OK");
+            return;
+        }
+
+        if (email == "")
+        {
+            await DisplayAlert("Validation", "Email is required.", "OK");
+            return;
+        }
+
+        _selected.Name = name;
+        _selected.Email = email;
+
+        var ok = await _api.UpdateOrganizerAsync(_selected);
+        await DisplayAlert(ok ? "OK" : "Error", ok ? "Updated!" : "Update failed.", "OK");
+
+        await LoadOrganizers();
+    }
+
+    private void OnClearClicked(object sender, EventArgs e)
+    {
+        _selected = null;
+        NameEntry.Text = "";
+        EmailEntry.Text = "";
+        OrganizersView.SelectedItem = null;
+    }
+
 
 }

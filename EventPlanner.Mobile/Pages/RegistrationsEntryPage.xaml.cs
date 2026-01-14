@@ -1,5 +1,6 @@
 using EventPlanner.Mobile.Models;
 using EventPlanner.Mobile.Services;
+using EventPlanner.Models;
 
 namespace EventPlanner.Mobile.Pages;
 
@@ -57,12 +58,17 @@ public partial class RegistrationsEntryPage : ContentPage
             return;
         }
 
-        var ok = await _api.CreateRegistrationAsync(new Registration
+        var dto = new Registration
         {
             ParticipantId = p.ID,
             EventItemId = ev.ID
-        });
+        };
 
-        await DisplayAlert(ok ? "OK" : "Error", ok ? "Registered successfully!" : "Registration failed.", "OK");
+        var (ok, info) = await _api.CreateRegistrationWithInfoAsync(dto);
+
+        await DisplayAlert(ok ? "OK" : "Registration failed",
+            ok ? "Registered successfully!" : info,
+            "OK");
     }
+
 }

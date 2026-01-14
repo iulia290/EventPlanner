@@ -2,6 +2,7 @@
 using System.Text.Json;
 using EventPlanner.Mobile.Models;
 using System.Net.Http.Headers;
+using EventPlanner.Models;
 
 namespace EventPlanner.Mobile.Services;
 
@@ -135,18 +136,19 @@ public class ApiService
         AccessToken = null;
         IsAdmin = false;
     }
-    public async Task<bool> RegisterToEventAsync(int participantId, int eventId)
+    public async Task<bool> RegisterToEventAsync(int participantId, int eventItemId)
     {
         EnsureAuthorization();
 
-        var res = await _http.PostAsJsonAsync("api/registrations", new
+        var res = await _http.PostAsJsonAsync("api/Registrations", new
         {
             participantId,
-            eventId
+            eventItemId
         });
 
         return res.IsSuccessStatusCode;
     }
+
 
     public async Task<List<Participant>> GetParticipantsAsync()
     {
@@ -170,13 +172,51 @@ public class ApiService
         return res.IsSuccessStatusCode;
     }
 
-    public async Task<bool> CreateRegistrationAsync(Registration dto)
+    public async Task<bool> CreateRegistrationAsync(EventPlanner.Models.Registration dto)
     {
         EnsureAuthorization();
 
         var res = await _http.PostAsJsonAsync("api/Registrations", dto);
 
         return res.IsSuccessStatusCode;
+    }
+
+    public async Task<bool> UpdateEventItemAsync(EventItem dto)
+    {
+        EnsureAuthorization();
+        var res = await _http.PutAsJsonAsync($"api/EventItems/{dto.ID}", dto);
+        return res.IsSuccessStatusCode;
+    }
+
+    public async Task<bool> UpdateOrganizerAsync(Organizer dto)
+    {
+        EnsureAuthorization();
+        var res = await _http.PutAsJsonAsync($"api/Organizers/{dto.ID}", dto);
+        return res.IsSuccessStatusCode;
+    }
+
+    public async Task<bool> UpdateParticipantAsync(Participant dto)
+    {
+        EnsureAuthorization();
+        var res = await _http.PutAsJsonAsync($"api/Participants/{dto.ID}", dto);
+        return res.IsSuccessStatusCode;
+    }
+    public async Task<(bool Ok, string Info)> CreateRegistrationWithInfoAsync(EventPlanner.Models.Registration dto)
+    {
+        try
+        {
+           EnsureAuthorization();
+
+            var res = await _http.PostAsJsonAsync("api/Registrations", dto);
+
+            var body = await res.Content.ReadAsStringAsync();
+            var info = $"{(int)res.StatusCode} {res.ReasonPhrase}\n{body}";
+            return (res.IsSuccessStatusCode, info);
+        }
+        catch (Exception ex)
+        {
+            return (false, ex.Message);
+        }
     }
 
 
